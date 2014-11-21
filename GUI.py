@@ -72,7 +72,7 @@ toode2.set(tooted[0]) # default value
 w3 = tk.OptionMenu(f1, toode2, *tooted)
 w3.pack(padx=3, pady=5)
 
-######### toode 1 kogus
+######### toode 2 kogus
 
 L2 = tk.Label(f1, text="Kogus")
 L2.pack()
@@ -114,3 +114,7 @@ button.pack()
 
 
 root.mainloop()
+###
+###
+###
+###
