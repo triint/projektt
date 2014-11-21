@@ -1,4 +1,4 @@
-## katsetan kas töötab
+## katsetan kas töötab 2
 import dataret as dr
 import datainp as di
 
