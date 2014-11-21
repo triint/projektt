@@ -1,3 +1,4 @@
+## katsetan kas töötab
 import dataret as dr
 import datainp as di
 
