@@ -19,6 +19,7 @@ def sisestaklient(nimi, kliendinumber, email):
     db = sqlite3.connect('test.db')
     db.execute('insert into kliendid (t1, i1, t2) values(?, ?, ?)', (nimi, kliendinumber, email))
     db.commit()
+    #kliendid = outkliendid()
     
 #sisestan tooted
 def sisestatoode(nimi, tootenumber, hind):
@@ -27,14 +28,14 @@ def sisestatoode(nimi, tootenumber, hind):
     db.commit()    
       
    
-firststart()
-sisestaklient('Jaak', 1, 'jaak@mail.ee')
-sisestaklient('Mari', 2, 'mari@mail.ee')
-sisestaklient('Jüri', 3, 'jyri@mail.ee')
-
-sisestatoode('apelsiin', 1, 2)
-sisestatoode('mandariin', 2, 3)
-sisestatoode('banaan', 3, 5)
+#firststart()
+def demo():    
+    sisestaklient('Jaak', 1, 'jaak@mail.ee')
+    sisestaklient('Mari', 2, 'mari@mail.ee')
+    sisestaklient('Jüri', 3, 'jyri@mail.ee')
+    sisestatoode('apelsiin', 1, 2)
+    sisestatoode('mandariin', 2, 3)
+    sisestatoode('banaan', 3, 5)
 
 
 

@@ -1,9 +1,9 @@
-## katsetan kas töötab 2
 import dataret as dr
 import datainp as di
 
 import tkinter as tk
 import tkinter.ttk as ttk
+
 
 root = tk.Tk()
 # use width x height + x_offset + y_offset (no spaces!)
@@ -73,7 +73,7 @@ toode2.set(tooted[0]) # default value
 w3 = tk.OptionMenu(f1, toode2, *tooted)
 w3.pack(padx=3, pady=5)
 
-######### toode 2 kogus
+######### toode 1 kogus
 
 L2 = tk.Label(f1, text="Kogus")
 L2.pack()
@@ -110,12 +110,19 @@ L1.pack()
 E3 = tk.Entry(f3, bd =2)
 E3.pack()
 
-button = tk.Button(f3, text="Lisa klient", command=di.lisaklient)
+button = tk.Button(f3, text="Lisa klient", command=lambda: dr.sisestaklient(E1.get(), E2.get(), E3.get()))
 button.pack()
 
 
+######################
+#    SEADED          #
+######################
+
+button = tk.Button(f4, text="Loo andmebaas", command=lambda: dr.firststart())
+button.pack()
+button = tk.Button(f4, text="DEMO", command=lambda: dr.demo())
+button.pack()
+
+
+
 root.mainloop()
-###
-###
-###
-###
