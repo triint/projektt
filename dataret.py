@@ -1,5 +1,6 @@
 import sqlite3
 
+
 #loo andmebaas
 def firststart():
     db = sqlite3.connect('test.db')

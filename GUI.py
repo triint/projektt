@@ -1,5 +1,6 @@
 import dataret as dr
 import datainp as di
+import klient_tab as kt
 
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -90,28 +91,23 @@ button.pack()
 
 
 ######################
-# klientide lisamine #
+# klientide TAB      #
 ######################
-
-L1 = tk.Label(f3, text="Kliendi nimi")
-L1.pack()
-E1 = tk.Entry(f3, bd =2)
-E1.pack()
-
-
-
-L1 = tk.Label(f3, text="Kliendi number")
-L1.pack()
-E2 = tk.Entry(f3, bd =2)
-E2.pack()
-
-L1 = tk.Label(f3, text="Kliendi email")
-L1.pack()
-E3 = tk.Entry(f3, bd =2)
-E3.pack()
-
-button = tk.Button(f3, text="Lisa klient", command=lambda: dr.sisestaklient(E1.get(), E2.get(), E3.get()))
+button = tk.Button(f3, text="LISA KLIENT", command=lambda: kt.kliendiaken())
 button.pack()
+
+L1 = tk.Label(f3, text="Meie kliendid:")
+L1.pack()
+
+l = tk.Listbox(f3, height=5)
+l.pack()
+s = ttk.Scrollbar(f3, command=l.yview)
+s.pack()
+l['yscrollcommand'] = s.set
+ttk.Sizegrip().pack()
+for i in kliendid:
+    l.insert('end', i)
+
 
 
 ######################
