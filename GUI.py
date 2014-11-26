@@ -1,6 +1,7 @@
 import dataret as dr
 import datainp as di
 import klient_tab as kt
+from pdfgen import *
 
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -86,7 +87,7 @@ E2.pack()
 def ok():
     print("value is", klient.get())
 
-button = tk.Button(f1, text="Loo arve", command=ok)
+button = tk.Button(f1, text="Loo arve", command=lambda: loopdf("2", klient.get(), toode1.get(), toode2.get()))
 button.pack()
 
 
