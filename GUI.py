@@ -101,21 +101,23 @@ button.grid(column =4, row = 10, padx=10, pady=10)
 ######################
 # klientide TAB      #
 ######################
-button = tk.Button(f3, text="LISA KLIENT", command=lambda: kt.kliendiaken())
-button.pack()
+
 
 L1 = tk.Label(f3, text="Meie kliendid:")
-L1.pack()
+L1.grid(column =0, row = 4, padx=3, pady=10)
 
-l = tk.Listbox(f3, height=5)
-l.pack()
+l = tk.Listbox(f3, height = 18, width = 63)
+l.grid(column =0, row = 5, columnspan=3, padx = 3)
+
 s = ttk.Scrollbar(f3, command=l.yview)
-s.pack()
+s.grid(column = 3, row = 5 )
 l['yscrollcommand'] = s.set
 ttk.Sizegrip().pack()
 for i in kliendid:
     l.insert('end', i)
-
+    
+button = tk.Button(f3, text="LISA KLIENT", command=lambda: kt.kliendiaken())
+button.grid(column =2, columnspan=2, row = 6, pady=10)
 
 
 ######################
