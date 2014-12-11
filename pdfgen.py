@@ -21,17 +21,19 @@ def loopdf(arvenumber, kliendinimi, toode1, toode2):
     c.drawString(75,550,toode1)
     c.drawString(250,550,'1 tk')
     c.drawString(325,550,'4€/kg')
-    c.drawString(400,550,'4€')
+    c.drawString(405,550,'4€')
     c.drawString(75,530,toode2)
     c.drawString(250,530,'1 tk')
     c.drawString(325,530,'4€/kg')
-    c.drawString(400,530,'4€')
+    c.drawString(405,530,'4€')
 
-    c.drawString(325,430,'KOKKU:')
-    c.drawString(400,430,'8€')
+    c.drawString(325,430,'Summa KM-ta:')
+    c.drawString(405,430,'8€')
+    c.drawString(325,410,'Käibemaks:')
+    c.drawString(405,410,'8€')
+    c.drawString(325,390,'SUMMA:')
+    c.drawString(405,390,'8€')
 
-    c.drawString(75,330,'Krista Teearu')
-    c.drawString(75,315,'Juhataja')
 
     c.line(65,130,525,130)
 
