@@ -12,7 +12,8 @@ def firststart():
     db.execute('create table tooted (t1 text, i1 int, i2 int)')
     
     db.commit()
-    
+    sisestaklient('Kliendi nimi', 1, 'nimi@mail.ee')
+    sisestatoode('toote nimi', 1, 2)
     
 
 #sisestan kliendi andmeid
@@ -31,12 +32,9 @@ def sisestatoode(nimi, tootenumber, hind):
    
 #firststart()
 def demo():    
-    sisestaklient('Jaak', 1, 'jaak@mail.ee')
-    sisestaklient('Mari', 2, 'mari@mail.ee')
-    sisestaklient('Jüri', 3, 'jyri@mail.ee')
-    sisestatoode('apelsiin', 1, 2)
-    sisestatoode('mandariin', 2, 3)
-    sisestatoode('banaan', 3, 5)
+    sisestaklient('Kliendi nimi', 1, 'nimi@mail.ee')
+    sisestatoode('toote nimi', 1, 2)
+  
 
 
 
@@ -59,10 +57,17 @@ def outtooted():
     for row in cursor:
         tooted = tooted + [row]
     return(tooted)
+    
+def hindid(id):
+    db = sqlite3.connect('test.db')
+    db.row_factory = lambda cursor, row: row[0]
+    cursor = db.execute('select i2 from tooted order by t1')
+    hinnad = []
+    for row in cursor:
+        hinnad = hinnad + [row]
+    
+    return(hinnad[id])
 
 
     
-#cursor = db.execute('select * from tooted order by t1')
-#for row in cursor:
-#    print(row)
-	
+

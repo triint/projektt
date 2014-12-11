@@ -2,35 +2,34 @@ import dataret as dr
 import datainp as di
 import klient_tab as kt
 from pdfgen import *
-from seaded import * 
+from seaded import *
+
 import tkinter as tk
 import tkinter.ttk as ttk
 
 
 root = tk.Tk()
-# use width x height + x_offset + y_offset (no spaces!)
+###
 root.geometry("%dx%d+%d+%d" % (450, 450, 100, 50))
 root.title('MinuLadu ver 0.1')
 
 nb = ttk.Notebook(root)
 nb.pack(fill='both', padx = 7, pady = 7, expand='yes')
 
-# create a child frame for each page
+# Loo tabid
+
 f1 = tk.Frame()
 f2 = tk.Frame()
 f3 = tk.Frame()
 f4 = tk.Frame()
 
-# create the pages
+# Loo lehed
+
 nb.add(f1, text='Arved')
 nb.add(f2, text='Ladu')
 nb.add(f3, text='Kliendid')
 nb.add(f4, text='Seaded')
 
-# put a button widget on child frame f1 on page1
-#btn1 = tk.Button(f1, text='Lisa uus')
-#btn1.pack(side='left', anchor='nw', padx=3, pady=5)
-#########
 
 ####################
 # Arve lisamine    #
@@ -43,60 +42,65 @@ tooted = dr.outtooted()
 
 #### kliendi valimine
 label1 = tk.Label(f1, text="Kliendi nimi:")
-label1.grid(column = 0, row = 4, padx=3, pady=5)
+label1.grid(column = 0, row = 4, pady=5, sticky='w')
 
 klient = tk.StringVar(f1)
 klient.set(kliendid[0]) # default value
 
 w = tk.OptionMenu(f1, klient, *kliendid)
-w.grid(column = 1, row = 4, padx=3, pady=5, )
+w.grid(column = 1, row = 4,  pady = 5)
 
 
+#### Kuupäev
+
+kuupl = tk.Label(f1, text="Kuupäev:")
+kuupl.grid(column =0, row = 5,  pady=1, sticky='w')
+kuup = tk.Entry(f1, bd =5)
+kuup.grid(column =1, row = 5,  pady=1)
+
+
+tekst = tk.Label(f1, text="Toodete arvele lisamine:")
+tekst.grid(column =0, row = 6, pady=20, sticky='w')
 
 ###### toode 1
-label2 = tk.Label(f1, text="Toode")
-label2.grid(column = 1, row = 5, padx=10, pady=1)
+label2 = tk.Label(f1, text="Toode:")
+label2.grid(column = 0, row = 7, pady=1, sticky='w')
 
 toode1 = tk.StringVar(f1)
 toode1.set(tooted[0]) # default value
 
 w2 = tk.OptionMenu(f1, toode1, *tooted)
-w2.grid(column =1, row = 6, padx=10, pady=1)
+w2.grid(column =1, row = 7, pady=1)
 
 
 ######### toode 1 kogus
 
-L1 = tk.Label(f1, text="Kogus")
-L1.grid(column =2, row = 5, padx=10, pady=1)
+L1 = tk.Label(f1, text="Kogus:")
+L1.grid(column =0, row = 8, pady=1, sticky='w')
 E1 = tk.Entry(f1, bd =5)
-E1.grid(column =2, row = 6, padx=10, pady=1)
+E1.grid(column =1, row = 8, pady=1)
 
-########### toode 2
+######### arve number
 
-label3 = tk.Label(f1, text="Toode")
-label3.grid(column = 1, row = 7, padx=10, pady=10)
-
-toode2 = tk.StringVar(f1)
-toode2.set(tooted[0]) # default value
-
-w3 = tk.OptionMenu(f1, toode2, *tooted)
-w3.grid(column =1, row = 8, padx=10, pady=10)
-
-
-######### toode 2 kogus
-
-L2 = tk.Label(f1, text="Kogus")
-L2.grid(column =2, row = 7, padx=10, pady=10)
-E2 = tk.Entry(f1, bd =5)
-E2.grid(column =2, row = 8, padx=10, pady=10)
+f = open('arvenumber.txt')
+arvenumber = f.read()
+f.close()
 
 ##### loo arve nupp
+def ok():
+    print("value is", klient.get())
+    
+button = tk.Button(f1, text="Lisa toode", command=lambda: lisatoode(arvenumber, toode1.get(), E1.get()))
+button.grid(column =2, row = 8, padx=10, pady=10)
 
-button = tk.Button(f1, text="Loo arve", command=lambda: loopdf("2", klient.get(), toode1.get(), toode2.get()))
-button.grid(column =4, row = 10, padx=10, pady=10)
+button = tk.Button(f1, text="Loo arve", command=lambda: loopdf(kuup.get(), klient.get()))
+button.grid(column =2, row = 10, padx=10, pady=50, sticky ='e')
+
+button = tk.Button(f1, text="Hetkeseis", command=lambda: kt.hetkeseis())
+button.grid(column =2, row = 9, padx=10, pady=10)
 
 ######################
-#    LADU            #
+#    Tooted laos     #
 ######################
 
 label4 = tk.Label(f2, text="Tooted laos:")
@@ -109,12 +113,11 @@ ss = ttk.Scrollbar(f2, command=l4.yview)
 ss.grid(column = 3, row = 5, sticky= 'ns' )
 l4['yscrollcommand'] = ss.set
 ttk.Sizegrip().pack()
-for i in kliendid:
+for i in tooted:
     l4.insert('end', i)
     
-button = tk.Button(f2, text="Lisa toode", command=lambda: dr.demo())
-button.grid()
-
+button = tk.Button(f2, text="LISA TOODE", command=lambda: kt.tooteaken())
+button.grid(row = 6, column= 2, pady = 10, sticky = 'e')
 
 
 ######################
@@ -145,8 +148,7 @@ button.grid(column =2, columnspan=2, row = 6, pady=10)
 
 button = tk.Button(f4, text="Loo andmebaas", command=lambda: dr.firststart())
 button.grid(column = 0, row = 2)
-button = tk.Button(f4, text="DEMO", command=lambda: dr.demo())
-button.grid(column = 0, row = 3)
+
 
 fnimil = tk.Label(f4, text="Firmanimi:")
 fnimil.grid(column = 1, row = 2)
