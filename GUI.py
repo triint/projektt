@@ -96,7 +96,7 @@ button = tk.Button(f1, text="Loo arve", command=lambda: loopdf("2", klient.get()
 button.grid(column =4, row = 10, padx=10, pady=10)
 
 ######################
-#    SEADED          #
+#    LADU            #
 ######################
 
 label4 = tk.Label(f2, text="Tooted laos:")

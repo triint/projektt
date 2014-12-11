@@ -1,9 +1,9 @@
-Firmanimi
-Tänav, maja, korter
-Linn, postiindeks
-Maakond
-Telefon
-E-mail
-Reg nr
-Pank
-Kontonumber
+asi
+jah
+ma
+ei
+tea
+mis
+email
+mul
+on
