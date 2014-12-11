@@ -2,7 +2,7 @@ import dataret as dr
 import datainp as di
 import klient_tab as kt
 from pdfgen import *
-
+from seaded import * 
 import tkinter as tk
 import tkinter.ttk as ttk
 
@@ -91,8 +91,6 @@ E2 = tk.Entry(f1, bd =5)
 E2.grid(column =2, row = 8, padx=10, pady=10)
 
 ##### loo arve nupp
-def ok():
-    print("value is", klient.get())
 
 button = tk.Button(f1, text="Loo arve", command=lambda: loopdf("2", klient.get(), toode1.get(), toode2.get()))
 button.grid(column =4, row = 10, padx=10, pady=10)
@@ -146,10 +144,66 @@ button.grid(column =2, columnspan=2, row = 6, pady=10)
 ######################
 
 button = tk.Button(f4, text="Loo andmebaas", command=lambda: dr.firststart())
-button.grid()
+button.grid(column = 0, row = 2)
 button = tk.Button(f4, text="DEMO", command=lambda: dr.demo())
-button.grid()
+button.grid(column = 0, row = 3)
 
+fnimil = tk.Label(f4, text="Firmanimi:")
+fnimil.grid(column = 1, row = 2)
+fnimi = tk.Entry(f4, bd =5)
+fnimi.insert(0, sisu(0))
+fnimi.grid(column = 2, row = 2, padx=15)
 
+tänavl = tk.Label(f4, text="Tänav, maja, korter:")
+tänavl.grid(column = 1, row = 3)
+tänav = tk.Entry(f4, bd =5)
+tänav.insert(0, sisu(1))
+tänav.grid(column = 2, row = 3, padx=15)
+
+linnl = tk.Label(f4, text="Linn, postiindeks:")
+linnl.grid(column = 1, row = 4)
+linn = tk.Entry(f4, bd =5)
+linn.insert(0, sisu(2))
+linn.grid(column = 2, row = 4, padx=15)
+
+maakondl = tk.Label(f4, text="Maakond:")
+maakondl.grid(column = 1, row = 5)
+maakond = tk.Entry(f4, bd =5)
+maakond.insert(0, sisu(3))
+maakond.grid(column = 2, row = 5, padx=15)
+
+telefonl = tk.Label(f4, text="Telefon:")
+telefonl.grid(column = 1, row = 6)
+telefon = tk.Entry(f4, bd =5)
+telefon.insert(0, sisu(4))
+telefon.grid(column = 2, row = 6, padx=15)
+
+emaill = tk.Label(f4, text="E-mail:")
+emaill.grid(column = 1, row = 7)
+email = tk.Entry(f4, bd =5)
+email.insert(0, sisu(5))
+email.grid(column = 2, row = 7, padx=15)
+
+regl = tk.Label(f4, text="Reg nr:")
+regl.grid(column = 1, row = 8)
+reg = tk.Entry(f4, bd =5)
+reg.insert(0, sisu(6))
+reg.grid(column = 2, row = 8, padx=15)
+
+pankl = tk.Label(f4, text="Pank:")
+pankl.grid(column = 1, row = 9)
+pank = tk.Entry(f4, bd =5)
+pank.insert(0, sisu(7))
+pank.grid(column = 2, row = 9, padx=15)
+
+arvel = tk.Label(f4, text="Kontonumber:")
+arvel.grid(column = 1, row = 10)
+arve = tk.Entry(f4, bd =5)
+arve.insert(0, sisu(8))
+arve.grid(column = 2, row = 10, padx=15)
+
+button = tk.Button(f4, text="Salvesta andmed", command=lambda:
+                   andmed(fnimi.get(), tänav.get(), linn.get(), maakond.get(), telefon.get(), email.get(), reg.get(), pank.get(), arve.get()))
+button.grid(column =2, row = 11, padx=10, pady=10)
 
 root.mainloop()
